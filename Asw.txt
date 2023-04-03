@@ -1,0 +1,203 @@
+NewComputer--->newkey.pme-->JrQeAsI?ATlvmkOpNSkO?a1lo2iT)AP6
+User name
+ Administrator
+
+Public DNS
+ ec2-3-108-194-48.ap-south-
+
+
+MyComputer---->new windows.pme--->ai1w45*EzlODyK!4-YXF(26c*QKF$D(r
+User name
+ Administrator
+
+Public DNS
+ ec2-43-204-142-5.ap-south-
+
+newinstace ---> newinstance.pme--->xKyB(O$gtc7HMf.Y6x7tAwZTH@@a-1DZ
+
+==============================================================================================================
+TO CREATE SSH KEY
+==============================================================================================================
+1. Login to github 
+2. click on profile photo on top right corner, go to settings
+3. go to SSH and GPG keys, in SSH keys go to generating SSH keys.
+4. click Generationg a new SSH key and adding it to the ssh-agent-->Generating a new SSH key-->2.copy link
+5. Open Git Bash-->Paste the copyed link, substituting in your GitHub email address. click enter->4times
+6. in git bash your public key path will be visible-->go to that given path and open .pub file in Notpad and
+    copy key
+7. again go to git hub, click on profile photo on top right corner, go to settings
+8. go to SSH and GPG keys, in SSH keys click New SSH keys.
+9. SSH keys/ Add new ->Title <any title>  key<paste key>->Add SSH key
+
+===============================================================================================================
+       GITBASH(google type git config)
+===============================================================================================================
+To link gitbash to github(in disktop)
+
+git config --global user.name "<username>"
+git config --global user.name "ShashidharV26"
+
+git config --global user.email "My_NAME@example.com"
+git config --global user.email "shashidhar.vshashi@gmail.com"
+
+===============================================================================================================
+TO CREATE LOCAL REPO
+===============================================================================================================
+1.create one remote repo in the github
+2.go to code and copy SSH link
+3.create one separate folder wherever and open gitbash in that folder 
+4.use command {git clone <paste link>}
+5.enter
+6.it will create local repo for that remote repo
+7.whenever we want to make any changes in that remote repo we must open gitbash in same folder, all the data 
+  present in that remote repo is folder is local repo
+
+
+==============================================================================================================
+Git Bash--commands
+==============================================================================================================
+1. git clone--->It is a command used to create a copy of a remote Git repository on a local machine.
+
+2. git pull--->to get update from remote repo
+             ->will first fetch the latest changes from the remote repository that your local repository is 
+               tracking. This command will download any new commits or files that have been added to the remote 
+               repository since your last synchronization.(if any changes made in remote repo it will added to 
+               local repo)
+
+3. git add--->it is a Git command used to stage changes to be committed to the remote repository. When you make 
+              changes to files in your local Git repository.
+(a)git add -A & git add * ---> both are used to push everything present in local repo to remote repo
+(b)git add <fileName> ---> it only push specified file by fileName.
+
+4. git commit -m "<message>" -->it is used to show what changes made in local repo when we open remot repo.
+                             -->it is used after git add command and writing message what are the changes.
+
+5. git push --> after git commit final step to push changed things to remote repo we use git push command.
+
+6. git status ---> it is used to check the status of the local repo where it will show any thing new changes made in 
+                   local repo which where not pushed to remote repo.
+
+**BRANCH**
+In GitHub, a branch is a separate line of development that allows you to work on new features, fix bugs, or make changes 
+to a project without affecting the main or "master" branch.
+When you create a branch in GitHub, it creates a copy of the codebase and allows you to make changes to the code without 
+affecting the main branch. You can then merge the changes you made in the branch back into the main branch through a pull request.
+Branches are useful for collaborating with others on a project, as different team members can work on different branches 
+without interfering with each other's work. They are also helpful for experimenting with new features or changes without affecting 
+the stability of the main codebase
+
+1. git branch <branchName> --->to create a new branch
+
+2. git branch --->to check any existing branches in local repo
+
+3. git checkout <branchName> --->it will change/switch storage location from main to branch
+
+4. git add -A
+
+5. git commit -m "<message>" 
+
+6. git push--->(it will show fatal/error, it will generate one git push command)
+   ->git push --set-upstream orign super (copy it and paste to console and enter,it will store the data into the branch)
+            
+--->the updated data is stored branch to send to main go to git hub ->it will show Compare & pull request(click)--->create pull request(click)--->Merge pull request(click)--->confirm merge(click)
+
+==============================================================================================================
+S3 --> Simple Storage Service|| TO CREATE S3 
+==============================================================================================================
+
+1. ASW console-> search S3 -> select [create Bucket] ---> Bucket name(Globally unique name only lower case alpha)
+   ->AWS Region(Any free trail region)->Click on ACLs disabled->{untick} for Block all public access->{tick} I acknowledge
+   ->[create bucket]
+   
+2. click on created bucket name--->permissions->Bucket policy->Edit
+
+3.Bucket policy
+a.copy code from crome
+  google->ASW S3 policy for public access->S3->copy code->paste code on policy and change bucket name->save changes
+  (it will make permission overview access private to public)
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Stmt1405592139000",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": [
+                "arn:aws:s3:::bucketname/*",
+                "arn:aws:s3:::bucketname"
+            ]
+        }
+    ]
+}
+
+
+
+b.Policy generator
+  click->Policy generator--->AWS Policy Generator->Select Type of Policy(S3 bucket policy)->Principal(*)->Actions(All Actions/get object)
+  ->Amazon Resource Name (ARN)(arn:aws:s3:::<bucket name>)->Add Statement->Generate Policy->copy code and paste code on policy->save changes. 
+
+
+4.Upload files on S3
+  ->click on created s3 name->go to objects->[upload]--->[add files](the file which you want to host eg:-index.html, these file must be in direct uplode)
+  [add folder](remaining all related files)->[upload]--->properties--->Static website hosting->[Edit]--->Edit static website hosting->tick Enable->
+  Index document(the front page which we want to host)->Error document(if that get error then this file is visible)->[save changes]
+  --->properties->copy link on Static website hosting-Bucket website endpoint-->paste that link on any crome then you get that file on any where.
+  if you not found then nothing to worry callme 6361662695 or text me 8197651400
+
+******************************[AFTER CREATING DELETE S3 AT THE END OF THE DAY]**********************************
+
+==============================================================================================================
+RDS --> Relational Database Service || TO CREATE RDS 
+==============================================================================================================
+1. AWS console->search RDS--->[create database]--->Choose a database creation method{tick Standard create}->select database(my sql)->Templates(free tire for 750hr on single AZ)
+   ->Settings-DatabaseName(anyname)-master username(anyname/admin)-Master password(any password)-public access(yes)->[create database](it will take 5 to 10 min to create)
+
+
+2. After creation of database click on database name--->go to security-VPC security groups-click on default link
+   --->Inbound rules->[edit inbound rules]--->if any rules are there except All trafic delete them and click [Add rules]
+   1->custom tcp -->Port range(3306)-->Source(IPv4)
+   2->custom tcp -->Port range(3306)-->Source(IPv6)
+    ->[Save rules]
+   --->Outbound rules->[edit Outbound rules]--->if any rules are there except All trafic delete them and click [Add rules]
+   1->custom tcp -->Port range(3306)-->Source(IPv4)
+   2->custom tcp -->Port range(3306)-->Source(IPv6)
+    ->[Save rules]
+
+3. To connect with MySQLWorkbeanch
+   click on database name-Connectivity & security-Endpoint & port-copy endpoint link.
+   ->open MySQLWorkbeanch on windows on MySQL connections click(+)->connection Name(any name for database)-Hostname(paste the endpoint link here)-Username(enter username i.e, masterUsername)
+     -Test Connection-it will ask password(Master password)-ok-Succefully you created database.
+
+4. To delete RDS
+   select database name-go to [Actions]-delete-type delete me.
+ 
+******************************[AFTER CREATING DELETE RDS AT THE END OF THE DAY]**********************************
+===================================================================================================================================================================================
+TO CREATE DynamoDB
+=================================================================================================================================================================================
+1.AWS console->search DynamoDb--->Dashboard->[Create table]--->Table details->table name(anyname)-Partition key(primary key)-Sort key(optional/two columns can combine form primary key)->[Create table]
+(Partition key+sort key=composite key-->combination of two or more columns behaving like primary key to retrive the data is known as composite key)
+
+2.DynamoDB->Tables->click on table name->Explore table items--->scan-create item(it is used to add the data into the table)--->Query-filters(it is used to featch the data).
+
+=====================================================================================================================================================================================
+TO CREATE ALARM WITH CLOUDWATCH AND SNS(Simple Notification Serives)
+==================================================================================================================================================================================
+1. AWS console->search SNS--->click on Simple Notification Serive---->go to Topics--->[Create topic]--->Details-Type(select Standard)-Name(any name)-Display name(anyname)--->[Create topic]
+
+2. Apply for Subscription
+AWS console->search SNS--->click on Simple Notification Serive---->go to Subscriptions--->[Create subscription]--->Details-Topic ARN(select SNS you created)-Protocol(select Email/SMS)-Endpoint(give mailId where you get notification)-[Create subscription]
+(after creation of subscription go to gmail and conform subscription)
+
+3. Create Alarm
+AWS console->search CloudWatch(click)--->go to Metrics-All metrics-Browse-(search for cpuutilization)-select EC2>Pre-Instance Metrics--->(select any one instance which you want set alarm)-(after selection of instance go to Graphed metrics)-under Actions select alarm icon--->
+step1-Specify metric and conditions-period(set time period for checking set 1 min to know how working)-Conditions-select threshold(lower - value any number(10))->[next]
+step2-Configure actions-select an existing SNS topic-Send a notification to…(select SNS name where which gmail you given for that email notification will go)-EC2 action(select any one action)->[next]
+step3-Name and description-Alarm name(any name it will shown in message)-Alarm description(Add description about notification)-[next]
+step4-Preview and create(check all the details)-[Create alarm]
+(After complition of time period your action on EC2 will be done and you will get a message about your action)
+
+
+
